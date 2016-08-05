@@ -2,9 +2,11 @@ package algorithm;
 //ArrayList공부
 //입출력  공부
 
-import java.util.ArrayList;
-import java.util.Scanner;
+//http://01027921288.tistory.com/entry/JAVA%EB%91%90%EA%B0%80%EC%A7%80-for-%EB%B0%98%EB%B3%B5%EB%AC%B8
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Algorithm {
 
@@ -24,7 +26,333 @@ public class Algorithm {
 		//PrintAChessBoard15c();
 		//StructuredProgram15d();
 		//RevercingNumbers16a();
-		FindingMissingCards16b();
+		//FindingMissingCards16b();
+		//OfficialHouse16c();
+		//MatrixVectorMultiplication();
+		//StructuredProgram2_Grading17a();
+		//StructuredProgram2_HOwMAnyWays17b();
+		//StructuedProgram2_Spreadsheet17c();
+		//StructredProgram2_MatrixMultiprication17d();
+		//Character_ToggringCases18a();
+		//Charactor_SUmOfNumbers18b();
+		//Character_COuntingCharacters18c();
+		//Character_Ring18d();
+		//String_FindingAWord();
+		String_Shuffle19b();
+	}
+
+
+	private static void String_Shuffle19b() {
+		Scanner scanner = new Scanner(System.in);
+		LinkedList<Character> card = new LinkedList<Character>();
+
+
+
+
+		while(true){
+			char[] input;
+			input = scanner.nextLine().toCharArray();
+			if(input.equals("-")){break;}
+			for(char x : input){
+				card.add(x);
+			}
+			int shaffle = 0;
+			shaffle = scanner.nextInt();
+
+			for(int i=0; i<shaffle; i++){
+				int h = 0;
+				h = scanner.nextInt();
+
+				for(int j=0; j<h; j++){
+					card.add(card.pollFirst());
+				}
+			}
+			System.out.println(card);
+			card.clear();
+		}
+	}
+
+
+	private static void String_FindingAWord() {
+		Scanner scanner = new Scanner(System.in);
+		String w = scanner.next();
+		int count = 0;
+
+		while(true){
+			String t_token = scanner.next(); //한 단어씩 입력을 받는다
+			if(t_token.equals("END_OF_TEXT")){
+				System.out.print(count);
+				break;
+				}
+			if(t_token.equals(w)){
+				count++;
+			}
+			//StringTokenizer token = new StringTokenizer(t);
+
+		}
+
+	}
+
+	private static void Character_Ring18d() {
+		Scanner scanner = new Scanner(System.in);
+		String s = scanner.nextLine();
+		String p = scanner.nextLine();
+		String str = s + s;
+		if(str.indexOf(p)!=-1){
+			System.out.print("yes");
+		}
+		else{
+			System.out.print("no");
+		}
+	}
+
+
+	private static void Character_COuntingCharacters18c() {
+		Scanner scanner = new Scanner(System.in);
+		char[] str = scanner.nextLine().toCharArray();
+		int[] count = new int[26];
+
+		for(int i=0;i<str.length; i++){  //to count characters
+			if('A'<=str[i] && str[i]<='Z'){
+				count[str[i]-'A']++;
+			}
+			else if('a'<=str[i] && str[i]<='z'){
+				count[str[i]-'a']++;
+			}
+		}
+
+		for(int i=0; i<26; i++){
+			System.out.println((char)(i+'a') +" : " + count[i]);
+		}
+	}
+
+
+	private static void Charactor_SUmOfNumbers18b() {
+		Scanner scanner = new Scanner(System.in);
+		char[] x;
+
+		do{
+			x = scanner.nextLine().toCharArray();
+
+			if(x[0]-'0'==0){
+				break;
+			}
+
+			int sum = 0;
+		    for(int i=0; i<x.length; i++){
+		    	sum += x[i]-'0';
+		    }
+		    System.out.println(sum);
+		}while(x[0]-'0'!=0);
+	}
+
+
+	private static void Character_ToggringCases18a() {
+		Scanner scanner = new Scanner(System.in);
+		char[] inputs = scanner.nextLine().toCharArray();//!!
+
+		for(int i = 0; i < inputs.length; i++){
+			if('A' <= inputs[i] && inputs[i] <= 'Z'){
+				inputs[i] =Character.toLowerCase(inputs[i]);
+			}
+			else if('a'<=inputs[i] && inputs[i]<='z'){
+				inputs[i] = Character.toUpperCase(inputs[i]);
+			}
+		}
+
+		System.out.print(inputs);
+	}
+
+
+	private static void StructredProgram2_MatrixMultiprication17d() {
+		Scanner scanner= new Scanner(System.in);
+		int n = scanner.nextInt();
+		int m = scanner.nextInt();
+		int l = scanner.nextInt();
+
+		int[][] matrix1 = new int[n][m];
+		int[][] matrix2 = new int[m][l];
+		int[][] answer = new int[n][l];
+
+		int i,j;
+
+		for(i=0; i<n; i++){ //input1/2
+			for(j=0; j<m; j++){
+				matrix1[i][j] = scanner.nextInt();
+			}
+		}
+		for(i=0; i<m; i++){ //input2/2
+			for(j=0; j<l; j++){
+				matrix2[i][j] = scanner.nextInt();
+			}
+		}
+		for(i=0; i<n; i++){ //calculation & output
+			System.out.println();
+			for(j=0; j<l; j++){
+				for(int z=0; z<m; z++){
+					answer[i][j] += matrix1[i][z] * matrix2[z][j];
+				}
+				System.out.print(answer[i][j] + " ");
+			}
+		}
+
+	}
+
+
+	private static void StructuedProgram2_Spreadsheet17c() {
+		Scanner scanner = new Scanner(System.in);
+		int r = scanner.nextInt();
+		int c = scanner.nextInt();
+		int[][] matrix = new int[r+1][c+1];
+		int i,j;
+
+		for(i=0; i<r; i++){
+			for(j=0; j<c; j++){
+				matrix[i][j] = scanner.nextInt();
+
+				matrix[i][c]+=matrix[i][j];
+				matrix[r][j]+=matrix[i][j];
+			}
+			matrix[r][c]+=matrix[i][c];
+		}
+
+		for(i=0; i<r+1; i++){
+			System.out.println();
+
+			for(j=0; j<c+1; j++){
+				System.out.print(matrix[i][j] + " ");
+			}
+		}
+	}
+
+
+	private static void StructuredProgram2_HOwMAnyWays17b() {
+		Scanner scanner = new Scanner(System.in);
+		int n,x;
+
+		do{
+			int count = 0;
+			n = scanner.nextInt();
+			x = scanner.nextInt();
+			if(n==0 && x==0){
+				break;
+			}
+
+			for(int i = 1; i < n-1; i++){
+				for(int j = i+1; j < n; j++){
+					for(int k = j+1; k <= n; k++){
+
+						if((i+j+k)==x){
+							count++;
+						}
+					}
+				}
+			}
+			System.out.println(count);
+		}while(n !=0 && x != 0);
+
+	}
+
+
+	private static void StructuredProgram2_Grading17a() {
+		Scanner scanner = new Scanner(System.in);
+		int m,f,r,sum;
+
+		while(true){
+			m = scanner.nextInt();
+			f = scanner.nextInt();
+			r = scanner.nextInt();
+			sum=m+f;
+
+			if(m==-1 && f==-1 && r==-1) break;
+
+			if(m==-1 || f==-1){
+				System.out.println("F");
+				continue;
+			}
+			else if(80 < sum){
+				System.out.println("A");
+				continue;
+			}
+			else if(65 <= sum && sum < 80){
+				System.out.println("B");
+				continue;
+			}
+			else if(50 <= sum && sum < 65){
+				System.out.println("C");
+				continue;
+			}
+			else if(30 <= sum && sum < 50){
+				if(r >= 50){
+					System.out.println("C");
+					continue;
+				}
+				else{
+					System.out.println("D");
+					continue;
+				}
+			}
+			else if(sum < 30){
+				System.out.println("F");
+				continue;
+			}
+		}
+	}
+
+
+	private static void MatrixVectorMultiplication() {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int m = scanner.nextInt();
+
+		int[][] matrix = new int[n][m];
+		int[] vector = new int[m];
+		int[] answer = new int[n];
+
+		int i,j;
+
+		for(i = 0 ; i<n;i++){
+			for(j = 0; j<m; j++){
+				matrix[i][j] = scanner.nextInt();
+			}
+		}
+		for(i = 0; i<m; i++){
+			vector[i] = scanner.nextInt();
+		}
+
+		for(i = 0; i<n; i++){    //calculation
+			for(j = 0; j<m; j++){
+				answer[i] += matrix[i][j]*vector[j];
+			}
+			System.out.println(answer[i]);
+		}
+	}
+
+
+	private static void OfficialHouse16c() {
+		Scanner scanner = new Scanner(System.in);
+		int[][][] house = new int[4][3][10]; //동,충,호
+		int n = scanner.nextInt();
+
+		for(int i=0;i<n;i++){ //input
+			int b = scanner.nextInt();
+			int f = scanner.nextInt();
+			int r = scanner.nextInt();
+			int v = scanner.nextInt();
+			house[b-1][f-1][r-1]+=v;
+		}
+		//output
+		for(int bb=0; bb<4; bb++){
+			if(bb!=0){
+				System.out.println("####################");
+			}
+			for(int ff=0;ff<3;ff++){
+				for(int rr=0;rr<10;rr++){
+					System.out.print(" "+house[bb][ff][rr]);
+				}
+				System.out.println();
+			}
+		}
 	}
 
 
