@@ -1,11 +1,10 @@
 package algorithm;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class AlgrithmMain {
+public class algorithm {
 
 	public static void main(String[] args){
 		//Range();
@@ -35,7 +34,7 @@ public class AlgrithmMain {
 		//Character_COuntingCharacters18c();
 		//Character_Ring18d();
 		//String_FindingAWord();
-		String_Shuffle19b();
+		//String_Shuffle19b();
 	}
 
 
@@ -44,12 +43,10 @@ public class AlgrithmMain {
 		LinkedList<Character> card = new LinkedList<Character>();
 
 
-
-
 		while(true){
 			char[] input;
 			input = scanner.nextLine().toCharArray();
-			if(input.equals("-")){break;}
+			 if(input[0] == '-'){break;}
 			for(char x : input){
 				card.add(x);
 			}
@@ -66,6 +63,8 @@ public class AlgrithmMain {
 			}
 			System.out.println(card);
 			card.clear();
+
+			 scanner.nextLine();
 		}
 	}
 
