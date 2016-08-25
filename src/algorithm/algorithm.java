@@ -35,6 +35,31 @@ public class algorithm {
 		//Character_Ring18d();
 		//String_FindingAWord();
 		//String_Shuffle19b();
+		String_CardGame19c();
+	}
+
+
+	private static void String_CardGame19c() {
+		Scanner scanner = new Scanner(System.in);
+		int n = scanner.nextInt();
+		int taros = 0;
+		int hanakos = 0;
+
+		for(int i=0; i<n; i++){
+			String taro = scanner.next();
+			String hanako = scanner.next();
+			int compareTo = taro.compareTo(hanako);
+
+			if(compareTo>0){
+				taros+=3;
+			}else if(compareTo == 0){
+				taros++;
+				hanakos++;
+			}else{
+				hanakos+=3;
+			}
+		}
+		System.out.print(taros +" "+ hanakos);
 	}
 
 
